@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Platform, type ColorValue } from 'react-native';
+import { type ColorValue } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { hapticSelect } from '@/lib/haptics';
@@ -26,11 +26,11 @@ export default function TabsLayout() {
         tabBarStyle: {
           backgroundColor: colors.surface,
           borderTopColor: colors.border,
-          height: 56 + (Platform.OS === 'web' ? 0 : insets.bottom),
-          paddingBottom: Platform.OS === 'web' ? 6 : insets.bottom,
-          paddingTop: 6,
+          height: 72 + insets.bottom,
+          paddingBottom: 10 + insets.bottom,
+          paddingTop: 8,
         },
-        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600', lineHeight: 16, paddingBottom: 2 },
         sceneStyle: { backgroundColor: colors.bg },
       }}>
       <Tabs.Screen name="index" options={{ title: t('tabGallery'), tabBarIcon: icon('images-outline') }} />

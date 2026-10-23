@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
@@ -7,19 +8,20 @@ import { colors, fonts } from '@/theme';
 
 /** Horizontal colour bar with cold / hot labels. */
 export function PaletteBar({ palette, lo, hi, unit, height = 12 }: { palette: PaletteId; lo: number; hi: number; unit: TempUnit; height?: number }) {
+  const gid = `pb-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
   const stops = PALETTES[palette].stops;
   const mid = (lo + hi) / 2;
   return (
     <View>
       <Svg width="100%" height={height}>
         <Defs>
-          <LinearGradient id={`pb-${palette}`} x1="0" y1="0" x2="1" y2="0">
+          <LinearGradient id={gid} x1="0" y1="0" x2="1" y2="0">
             {stops.map((c, i) => (
               <Stop key={i} offset={i / (stops.length - 1)} stopColor={rgbCss(c)} />
             ))}
           </LinearGradient>
         </Defs>
-        <Rect x="0" y="0" width="100%" height={height} rx={height / 2} fill={`url(#pb-${palette})`} />
+        <Rect x="0" y="0" width="100%" height={height} rx={height / 2} fill={`url(#${gid})`} />
       </Svg>
       <View style={s.labels}>
         <Text style={s.label}>{formatTemp(lo, unit)}</Text>

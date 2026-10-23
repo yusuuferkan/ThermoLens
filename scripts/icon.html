@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- Source for the app icons in assets/images. Open in a browser and use the buttons, or
+     render headless: each <canvas> is exported as PNG (see README "Assets"). -->
+<meta charset="utf-8">
+<body style="margin:0;background:#222">
+<script>
+const SIZES = { icon: 1024, foreground: 1024, background: 1024, monochrome: 1024, splash: 1024, favicon: 64 };
+function draw(kind, size) {
+  const c = document.createElement('canvas'); c.width = c.height = size; const g = c.getContext('2d');
+  const S = size / 1024; g.scale(S, S);
+  const transparent = kind === 'foreground' || kind === 'monochrome' || kind === 'splash';
+  if (kind === 'background' || kind === 'icon' || kind === 'favicon') { g.fillStyle = '#0A0C0F'; g.fillRect(0, 0, 1024, 1024); }
+  if (kind === 'background') return c;
+  const k = kind === 'foreground' || kind === 'monochrome' ? 0.62 : kind === 'splash' ? 0.8 : 0.78;
+  g.translate(512, 512); g.scale(k, k);
+  if (kind === 'monochrome') {
+    g.strokeStyle = '#fff'; g.lineWidth = 56; g.beginPath(); g.arc(0, 0, 420, 0, Math.PI * 2); g.stroke();
+    g.fillStyle = '#fff'; g.beginPath(); g.arc(0, 0, 190, 0, Math.PI * 2); g.fill();
+    return c;
+  }
+  // lens body
+  g.fillStyle = '#13171C'; g.beginPath(); g.arc(0, 0, 440, 0, Math.PI * 2); g.fill();
+  // thermal blob (ironbow-like radial gradient)
+  const r = g.createRadialGradient(40, -30, 10, 0, 0, 380);
+  [[0, '#FFFFFF'], [0.12, '#FFF1A8'], [0.3, '#FFB21E'], [0.5, '#F0541A'], [0.68, '#B01E5E'], [0.85, '#4A0A82'], [1, '#0F0420']].forEach(([o, col]) => r.addColorStop(o, col));
+  g.fillStyle = r; g.beginPath(); g.arc(0, 0, 380, 0, Math.PI * 2); g.fill();
+  // ring
+  g.strokeStyle = '#EAEEF3'; g.lineWidth = 34; g.beginPath(); g.arc(0, 0, 430, 0, Math.PI * 2); g.stroke();
+  // glint
+  g.strokeStyle = 'rgba(255,255,255,0.55)'; g.lineWidth = 22; g.lineCap = 'round';
+  g.beginPath(); g.arc(0, 0, 340, Math.PI * 1.12, Math.PI * 1.38); g.stroke();
+  return c;
+}
+window.render = (kind) => draw(kind, SIZES[kind]).toDataURL('image/png');
+</script>

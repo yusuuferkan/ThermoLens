@@ -98,6 +98,7 @@ export function SwitchRow({ label, value, onChange }: { label: string; value: bo
         }}
         trackColor={{ true: colors.accent, false: colors.surface2 }}
         thumbColor="#fff"
+        {...({ activeThumbColor: '#fff' } as object)}
       />
     </View>
   );

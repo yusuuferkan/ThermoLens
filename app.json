@@ -22,7 +22,7 @@
       "package": "dev.yusuferkan.thermolens"
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png",
       "bundler": "metro"
     },

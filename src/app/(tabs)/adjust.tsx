@@ -47,7 +47,6 @@ export default function Adjust() {
         </Card>
 
         <Card>
-          <Title right={<Text style={s.emVal}>{p.emissivity.toFixed(2)}</Text>}>{t('emissivity')}</Title>
           <SliderRow label={t('emissivity')} valueText={p.emissivity.toFixed(2)} value={p.emissivity} min={0.05} max={1} step={0.01} onChange={(v) => st().setParams({ emissivity: Math.round(v * 100) / 100 })} />
           <Muted style={{ marginTop: 10, marginBottom: 8 }}>{t('material')}</Muted>
           <View style={s.chips}>
@@ -113,6 +112,5 @@ const s = StyleSheet.create({
   live: { flexDirection: 'row' },
   liveLabel: { color: colors.muted, fontSize: 11, fontWeight: '600' },
   liveValue: { fontSize: 18, fontWeight: '800' },
-  emVal: { color: colors.accent, fontWeight: '800', fontSize: 15 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
 });

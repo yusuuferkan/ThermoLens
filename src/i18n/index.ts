@@ -145,7 +145,7 @@ const tr: Strings = {
   appName: 'ThermoLens',
   tagline: 'Termal görüntüleri doğru sıcaklık haritalarına dönüştürün',
   tabGallery: 'Galeri',
-  tabViewer: 'Görüntüleyici',
+  tabViewer: 'Görüntü',
   tabMeasure: 'Ölçüm',
   tabAdjust: 'Ayarlar',
   tabHistory: 'Geçmiş',
