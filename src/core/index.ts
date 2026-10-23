@@ -11,3 +11,4 @@ export * from './importer';
 export * from './demo';
 export * from './base64';
 export { encodeRgbaPng } from './png';
+export * from './measure';
